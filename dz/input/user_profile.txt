@@ -1,0 +1,13 @@
+USER_ID is 1
+USERNAME is q(K1rLes)
+
+begin
+    DISPLAY_NAME := USERNAME;
+    AVATAR_URL := q(https://k1rles.ru/static/images/profile.jpg);
+    LEVEL := 19;
+    XP := 6935;
+    SETTINGS := begin
+        SHOW_ONLINE_STATUS := q(true);
+        THEME := q(dark-blue);
+    end;
+end

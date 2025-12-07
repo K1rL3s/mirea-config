@@ -1,0 +1,13 @@
+LEVEL_NAME is q(RTU MIREA)
+DIFFICULTY is 3
+
+begin
+    NAME := LEVEL_NAME;
+    TIME_LIMIT := 5400;
+    STUDENTS_COUNT := |DIFFICULTY * 1500|;
+    HAZARDS := begin
+        DOORS := 10;
+        TEACHERS := 52;
+    end;
+    SECRET_ITEMS := 3;
+end

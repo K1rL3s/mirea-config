@@ -1,0 +1,10 @@
+{
+    "APP_NAME": "WebTgClient",
+    "DEBUG_MODE": "false",
+    "DATABASE_URL": "postgres://user:password@host:5432/dbname",
+    "RESOURCES": {
+        "CPU_LIMIT": "500m",
+        "MEM_LIMIT": "1G"
+    },
+    "API_PORT": 443
+}

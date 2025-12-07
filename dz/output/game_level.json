@@ -1,0 +1,10 @@
+{
+    "NAME": "RTU MIREA",
+    "TIME_LIMIT": 5400,
+    "STUDENTS_COUNT": 4500,
+    "HAZARDS": {
+        "DOORS": 10,
+        "TEACHERS": 52
+    },
+    "SECRET_ITEMS": 3
+}

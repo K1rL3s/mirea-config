@@ -1,0 +1,13 @@
+HOST is q(web.telegram.org)
+PORT is 443
+
+begin
+    APP_NAME := q(WebTgClient);
+    DEBUG_MODE := q(false);
+    DATABASE_URL := q(postgres://user:password@host:5432/dbname);
+    RESOURCES := begin
+        CPU_LIMIT := q(500m);
+        MEM_LIMIT := q(1G);
+    end;
+    API_PORT := PORT;
+end
