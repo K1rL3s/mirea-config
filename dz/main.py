@@ -254,7 +254,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--output",
-        required=True,
+        required=False,
         help="Путь для выходного JSON файла",
     )
     args = parser.parse_args()
@@ -263,8 +263,11 @@ def main() -> None:
         input_text = sys.stdin.read()
         parser = Parser(input_text)
         result = parser.parse()
-        with Path(args.output).open("w", encoding="utf-8") as f:
-            json.dump(result, f, indent=4, ensure_ascii=False)
+        if args.output:
+            with Path(args.output).open("w", encoding="utf-8") as f:
+                json.dump(result, f, indent=4, ensure_ascii=False)
+        else:
+            print(json.dumps(result, indent=4, ensure_ascii=False))
     except (SyntaxError, TypeError) as e:
         sys.stderr.write(f"Syntax error: {e}\n")
         sys.exit(1)
