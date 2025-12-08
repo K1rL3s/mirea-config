@@ -10,7 +10,7 @@ class Parser:
     def __init__(self, text: str) -> None:
         self._tokens = self._tokenize(text)
         self._pos = 0
-        self._constants = {}
+        self._constants: dict[str, Any] = {}
 
     def _tokenize(self, text: str) -> list[tuple[str, str]]:
         """
@@ -47,7 +47,7 @@ class Parser:
             value = mo.group()
             if kind == "SKIP":
                 continue
-            if kind == "MISMATCH":
+            if kind == "MISMATCH" or kind is None:
                 raise SyntaxError(f"Unexpected character: {value}")
             tokens.append((kind, value))
         return tokens
@@ -80,7 +80,7 @@ class Parser:
             f"{current_token[0] if current_token else 'EOF'}",
         )
 
-    def parse(self) -> dict:
+    def parse(self) -> dict[str, Any]:
         """
         Основной метод парсинга.
         Парсит объявления констант и один основной словарь.
@@ -99,9 +99,8 @@ class Parser:
 
         # Если словаря нет, возвращаем пустой объект
         # Это может произойти, если ввод содержит только объявления констант
-        if self._pos == len(self._tokens) or (
-            self._peek() and self._peek()[0] != "BEGIN"
-        ):
+        peek = self._peek()
+        if self._pos == len(self._tokens) or (peek is not None and peek[0] != "BEGIN"):
             # Проверяем наличие необработанных токенов для большей строгости
             if self._pos < len(self._tokens):
                 raise SyntaxError(
@@ -146,7 +145,7 @@ class Parser:
 
         raise SyntaxError(f"Unexpected token when parsing value: {token}")
 
-    def _parse_dictionary(self) -> dict:
+    def _parse_dictionary(self) -> dict[str, Any]:
         """Парсит блок словаря."""
         self._expect("BEGIN")
         result = {}
